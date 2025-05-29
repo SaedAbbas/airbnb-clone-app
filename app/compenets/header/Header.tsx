@@ -7,8 +7,8 @@ import Navbar from "./Navbar";
 const Header = () => {
   return (
     <header className="bg-white shadow-md py-5 sticky top-0 z-50">
-      <div className="containerXL flex justify-between ">
-        <Link href="/" className="relative flex items-center h-10 my-auto">
+      <div className="containerXL grid grid-cols-3 max-md:grid-cols-1 gap-y-4 ">
+        <Link href="/" className="relative flex items-center h-10 my-auto max-md:justify-center">
           <Image
             src="/Airbnb-Logo.png"
             alt="Logo"
@@ -18,7 +18,7 @@ const Header = () => {
             priority
           />
         </Link>
-        <Searchbar />
+        <Searchbar  />
         <Navbar />
       </div>
     </header>
