@@ -1,11 +1,11 @@
 import React from 'react'
 
-const Banner = () => {
+const ExploreCard = () => {
   return (
     <div>
-      banner
+      
     </div>
   )
 }
 
-export default Banner
+export default ExploreCard
