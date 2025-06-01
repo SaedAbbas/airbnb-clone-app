@@ -12,7 +12,7 @@ const Live = async() => {
     <section className="pt-10">
       <div className="containerXL">
         <MainHeading title="Live Anywhere" />
-        <div className="flex space-x-3 overflow-scroll">
+        <div className="flex space-x-3 overflow-scroll no-scrollbar">
           {liveData?.map((item, index) => (
            <LiveCard
               key={index}
