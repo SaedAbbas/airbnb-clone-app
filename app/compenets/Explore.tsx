@@ -1,11 +1,11 @@
 import React from "react";
 import ExploreCard from "./ExploreCard";
-import exploreAPI from "../utils/exploreAPI";
+import api from "../utils/exploreAPI";
 import { ExploreData } from "../types/app";
 import MainHeading from "./MainHeading";
 
 const Explore = async () => {
-  const exploreData: ExploreData = await exploreAPI();
+  const exploreData: ExploreData = await api.exploreAPI();
   console.log(exploreData);
   return (
     <section className="pt-6">

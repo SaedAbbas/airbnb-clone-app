@@ -1,4 +1,4 @@
-import apiUrl from "./api";
+import apiUrl from "./apiURL";
 
 const exploreAPI = async() => {
     try{
@@ -12,4 +12,17 @@ const exploreAPI = async() => {
     }
 }
 
-export default exploreAPI;
+
+
+const getLiveAPI = async() => {
+    try{
+        const response = await apiUrl.get('/b/VHHT')
+        return response.data;
+
+    }catch(error) {
+        console.error("Error in getLiveAPI:", error);
+        throw error; // Re-throw the error for further handling if needed
+    }
+}
+
+export default {exploreAPI,getLiveAPI}
