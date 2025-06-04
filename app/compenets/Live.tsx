@@ -18,7 +18,7 @@ const Live = async () => {
         <MainHeading title="Live Anywhere" />
         <Carousel>
           <CarouselContent>
-            {[...liveData, ...liveData]?.map((item, index) => (
+            {[...liveData,...liveData, ...liveData]?.map((item, index) => (
               <CarouselItem
                 key={index}
                 className="basis-1/2 md:basis-1/3 lg:basis-1/4 flex-none"
