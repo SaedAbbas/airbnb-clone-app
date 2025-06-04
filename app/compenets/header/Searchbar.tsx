@@ -5,6 +5,7 @@ import "react-date-range/dist/styles.css"; // main style file
 import "react-date-range/dist/theme/default.css"; // theme css file
 import { DateRangePicker, RangeKeyDict } from "react-date-range";
 import { FaUserAlt } from "react-icons/fa";
+import Link from "next/link";
 
 const Searchbar = () => {
   const [inputValue, setInputValue] = useState("");
@@ -37,7 +38,7 @@ const Searchbar = () => {
       </div>
       {inputValue && (
         <>
-          <div className="absolute top-[61px] left-1/2 transform -translate-x-1/2 ">
+          <div className="absolute top-[61px] max-md:mx-4 max-md:top-[160px] left-1/2 transform -translate-x-1/2 ">
             <DateRangePicker
               onChange={handleSelect}
               moveRangeOnFirstSelection={false}
@@ -46,7 +47,7 @@ const Searchbar = () => {
               rangeColors={["#FD5B61"]}
               minDate={new Date()}
             />
-            <div className="flex items-center border-t-1 justify-between bg-white rounded-b-lg p-4">
+            <div className="flex items-center border-t-1 justify-between bg-white p-4">
               <label htmlFor="guests" className="text-xl ml-6 text-gray-600 font-semibold">
                 Number of Guests
               </label>
@@ -61,6 +62,12 @@ const Searchbar = () => {
                   className="w-12 text-center text-red-400 border border-gray-300 rounded-md mx-2"
                 />
               </div>
+            </div>
+            <div className="flex items-center justify-around rounded-b-lg border-t-1 bg-white p-4">
+              <button type="button" onClick={() => setInputValue("")} className="cursor-pointer bg-red-400 text-white rounded-lg py-2 px-6 font-semibold">
+                Cancel
+                </button>
+              <Link href='/' className="bg-red-400 text-white rounded-lg py-2 px-6 font-semibold" >Search</Link>
             </div>
           </div>
         </>
