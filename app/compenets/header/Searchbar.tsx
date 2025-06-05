@@ -7,7 +7,7 @@ import { DateRangePicker, RangeKeyDict } from "react-date-range";
 import { FaUserAlt } from "react-icons/fa";
 import Link from "next/link";
 
-const Searchbar = () => {
+const Searchbar = ({ placeholder }: { placeholder?: string }) => {
   const [inputValue, setInputValue] = useState("");
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
@@ -31,7 +31,7 @@ const Searchbar = () => {
           type="text"
           value={inputValue}
           onChange={(e) => setInputValue(e.target.value)}
-          placeholder="Start your search"
+          placeholder={placeholder || "Start your search"}
           className="text-sm text-gray-600 placeholder-gray-400 flex-grow pl-5 bg-transparent outline-none"
         />
         <IoSearch className="bg-red-400 text-white rounded-full w-6 h-6 p-1" />
@@ -75,9 +75,10 @@ const Searchbar = () => {
                 Cancel
               </button>
               <Link
-                href={
-                  {pathname: '/search' , search: `location=${inputValue}&startDate=${startDate.toISOString()}&endDate=${endDate.toISOString()}&numOfGuests=${numOfGuests}`}
-                }
+                href={{
+                  pathname: "/search",
+                  search: `location=${inputValue}&startDate=${startDate.toISOString()}&endDate=${endDate.toISOString()}&numOfGuests=${numOfGuests}`,
+                }}
                 onClick={() => setInputValue("")}
                 className="bg-red-400 text-white rounded-lg py-2 px-6 font-semibold"
               >
