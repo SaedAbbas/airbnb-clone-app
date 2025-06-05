@@ -1,6 +1,5 @@
 import Banner from "./compenets/Banner";
 import Explore from "./compenets/Explore";
-import Footer from "./compenets/Footer";
 import GreatestOutdoor from "./compenets/GreatestOutdoor";
 import Live from "./compenets/Live";
 
@@ -16,7 +15,6 @@ export default function Home() {
       description='Wishlists created by Airbnb users to inspire their next trip.'
       linkText='Get Inspired'
       />
-      <Footer />
     </div>
   );
 }

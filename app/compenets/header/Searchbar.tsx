@@ -43,12 +43,15 @@ const Searchbar = () => {
               onChange={handleSelect}
               moveRangeOnFirstSelection={false}
               ranges={[selectionRange]}
-              className="bg-white  p-4"
+              className="bg-white  p-4 "
               rangeColors={["#FD5B61"]}
               minDate={new Date()}
             />
             <div className="flex items-center border-t-1 justify-between bg-white p-4">
-              <label htmlFor="guests" className="text-xl ml-6 text-gray-600 font-semibold">
+              <label
+                htmlFor="guests"
+                className="text-xl ml-6 text-gray-600 font-semibold"
+              >
                 Number of Guests
               </label>
               <div className="flex items-center gap-x-2">
@@ -64,10 +67,22 @@ const Searchbar = () => {
               </div>
             </div>
             <div className="flex items-center justify-around rounded-b-lg border-t-1 bg-white p-4">
-              <button type="button" onClick={() => setInputValue("")} className="cursor-pointer bg-red-400 text-white rounded-lg py-2 px-6 font-semibold">
+              <button
+                type="button"
+                onClick={() => setInputValue("")}
+                className="cursor-pointer bg-red-400 text-white rounded-lg py-2 px-6 font-semibold"
+              >
                 Cancel
-                </button>
-              <Link href='/' className="bg-red-400 text-white rounded-lg py-2 px-6 font-semibold" >Search</Link>
+              </button>
+              <Link
+                href={
+                  {pathname: '/search' , search: `location=${inputValue}&startDate=${startDate.toISOString()}&endDate=${endDate.toISOString()}&numOfGuests=${numOfGuests}`}
+                }
+                onClick={() => setInputValue("")}
+                className="bg-red-400 text-white rounded-lg py-2 px-6 font-semibold"
+              >
+                Search
+              </Link>
             </div>
           </div>
         </>
