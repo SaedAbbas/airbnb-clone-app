@@ -1,3 +1,4 @@
+import { Geist } from 'next/font/google';
 import apiUrl from "./apiURL";
 
 const exploreAPI = async() => {
@@ -25,4 +26,14 @@ const getLiveAPI = async() => {
     }
 }
 
-export default {exploreAPI,getLiveAPI}
+const getSearchResultData = async() => {
+    try{
+        const response = await apiUrl.get('/b/5NPS')
+        return response.data;
+
+    }catch(error){
+        console.error(error)
+    }
+}
+
+export default {exploreAPI,getLiveAPI,getSearchResultData}

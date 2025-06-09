@@ -2,6 +2,9 @@ import React from "react";
 import Header from "../compenets/header/Header";
 import Footer from "../compenets/Footer";
 import { format } from "date-fns";
+import api from "../utils/exploreAPI";
+import { SearchResultData } from "../types/app";
+import ListingCard from "../compenets/ListingCard";
 
 type SearchParams = {
   location?: string;
@@ -11,8 +14,8 @@ type SearchParams = {
 };
 
 
-const SearchResult = ({
-  searchParams: { location, startDate, endDate, numOfGuests },
+const SearchResult = async({
+  searchParams: { location, startDate, endDate, numOfGuests }
 }: {
   searchParams: SearchParams;
 }) => {
@@ -29,13 +32,59 @@ const SearchResult = ({
   //toISOString() هاي لما بدك تزبط التاريخ لل url بحيث يكون شكله مزبوط فال
   //اما بالنسبة للفورمات بتزبطلي التاريخ بدل مهو كبير كتير بتخليه عشكل  dd MMMM yyyy
 
+  const filters = [
+    'Cancellation Flexibility',
+    'Type of Place',
+    'Price',
+    'Rooms and Beds',
+    'More filters',
+  ];
+
+  const searchResultData:SearchResultData = await api.getSearchResultData()
+  console.log(searchResultData)
+
 
   return (
     <>
       <Header placeholder={`${location} | ${range} | ${numOfGuests} guests`} />
-
-      <div>SearchResult</div>
-
+      <main>
+        <section>
+          <div className='containerXL flex'>
+            <div className='pt-14 pr-4'>
+              <p className='text-xs'>
+                300+ Stays - {range} - for {numOfGuests} guests
+              </p>
+              <h1 className='text-3xl font-semibold mt-2 mb-6 '>
+                Stays in {location}
+              </h1>
+              <div className='hidden lg:inline-flex mb-5 space-x-3 text-gray-800 whitespace-nowrap'>
+                {filters.map((filter) => (
+                  <button type='button' className='filter-btn' key={filter}>
+                    {filter}
+                  </button>
+                ))}
+              </div>
+              <div>
+                {searchResultData.map((listing) => (
+                  <ListingCard
+                    key={listing.title}
+                    img={listing.img}
+                    title={listing.title}
+                    location={listing.location}
+                    description={listing.description}
+                    price={listing.price}
+                    total={listing.total}
+                    star={listing.star}
+                  />
+                ))}
+              </div>
+            </div>
+            <div className='hidden xl:inline-flex xl:min-w-[600px]'>
+              {/* <Map searchResultData={searchResultData} /> */}
+            </div>
+          </div>
+        </section>
+      </main>
       <Footer />
     </>
   );

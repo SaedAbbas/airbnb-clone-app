@@ -77,7 +77,13 @@ const Searchbar = ({ placeholder }: { placeholder?: string }) => {
               <Link
                 href={{
                   pathname: "/search",
-                  search: `location=${inputValue}&startDate=${startDate.toISOString()}&endDate=${endDate.toISOString()}&numOfGuests=${numOfGuests}`,
+                  // search: `location=${inputValue}&startDate=${startDate.toISOString()}&endDate=${endDate.toISOString()}&numOfGuests=${numOfGuests}`,
+                  query: {
+                    location: inputValue,
+                    startDate: startDate.toISOString(),
+                    endDate: endDate.toISOString(),
+                    numOfGuests: numOfGuests.toString(),
+                  } 
                 }}
                 onClick={() => setInputValue("")}
                 className="bg-red-400 text-white rounded-lg py-2 px-6 font-semibold"
