@@ -21,28 +21,28 @@ const Map = ({ searchResultData }: { searchResultData: SearchResultData }) => {
   L.Marker.prototype.options.icon = defaultIcon;
 
   return (
-    <div className='h-full w-full z-0'>
-      <MapContainer
-        center={position}
-        zoom={13}
-        scrollWheelZoom={true}
-        className='h-full w-full rounded-xl'
+<div className='w-full h-full rounded-xl overflow-hidden'>
+  <MapContainer
+    center={position}
+    zoom={13}
+    scrollWheelZoom={true}
+    className='w-full h-full'
+  >
+    <TileLayer
+      url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
+      attribution='&copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors'
+    />
+    {searchResultData.map((listing) => (
+      <Marker
+        key={listing.long}
+        position={[listing.lat, listing.long]}
       >
-        <TileLayer
-          url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
-          attribution='&copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors'
-        />
+        <Popup>{listing.title}</Popup>
+      </Marker>
+    ))}
+  </MapContainer>
+</div>
 
-        {searchResultData.map((listing) => (
-          <Marker
-            key={listing.long}
-            position={[listing.lat, listing.long]}
-          >
-            <Popup>{listing.title}</Popup>
-          </Marker>
-        ))}
-      </MapContainer>
-    </div>
   );
 };
 

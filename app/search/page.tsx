@@ -14,19 +14,16 @@ type SearchParams = {
   numOfGuests?: string;
 };
 
-
-const SearchResult = async({
-  searchParams: { location, startDate, endDate, numOfGuests }
+const SearchResult = async ({
+  searchParams: { location, startDate, endDate, numOfGuests },
 }: {
   searchParams: SearchParams;
 }) => {
-
   let formatedStartDate;
-  let formatedEndDate ;
+  let formatedEndDate;
   if (startDate && endDate) {
-
-    formatedStartDate = format(new Date(startDate), 'dd MMMM yyyy');
-    formatedEndDate = format(new Date(endDate), 'dd MMMM yyyy');
+    formatedStartDate = format(new Date(startDate), "dd MMMM yyyy");
+    formatedEndDate = format(new Date(endDate), "dd MMMM yyyy");
   }
   const range = `${formatedStartDate} - ${formatedEndDate}`;
 
@@ -34,38 +31,38 @@ const SearchResult = async({
   //اما بالنسبة للفورمات بتزبطلي التاريخ بدل مهو كبير كتير بتخليه عشكل  dd MMMM yyyy
 
   const filters = [
-    'Cancellation Flexibility',
-    'Type of Place',
-    'Price',
-    'Rooms and Beds',
-    'More filters',
+    "Cancellation Flexibility",
+    "Type of Place",
+    "Price",
+    "Rooms and Beds",
+    "More filters",
   ];
 
-  const searchResultData:SearchResultData = await api.getSearchResultData()
-  console.log(searchResultData)
-
+  const searchResultData: SearchResultData = await api.getSearchResultData();
+  console.log(searchResultData);
 
   return (
     <>
       <Header placeholder={`${location} | ${range} | ${numOfGuests} guests`} />
       <main>
         <section>
-          <div className='containerXL flex'>
-            <div className='pt-14 pr-4'>
-              <p className='text-xs'>
+          <div className="containerXL flex flex-col xl:flex-row">
+            {/* القائمة */}
+            <div className="pt-14 pr-4 xl:w-3/5">
+              <p className="text-xs">
                 300+ Stays - {range} - for {numOfGuests} guests
               </p>
-              <h1 className='text-3xl font-semibold mt-2 mb-6 '>
+              <h1 className="text-3xl font-semibold mt-2 mb-6 ">
                 Stays in {location}
               </h1>
-              <div className='hidden lg:inline-flex mb-5 space-x-3 text-gray-800 whitespace-nowrap'>
+              <div className="hidden lg:inline-flex mb-5 space-x-3 text-gray-800 whitespace-nowrap">
                 {filters.map((filter) => (
-                  <button type='button' className='filter-btn' key={filter}>
+                  <button type="button" className="filter-btn" key={filter}>
                     {filter}
                   </button>
                 ))}
               </div>
-              <div>
+              <div className="flex flex-col gap-y-8">
                 {searchResultData.map((listing) => (
                   <ListingCard
                     key={listing.title}
@@ -80,12 +77,15 @@ const SearchResult = async({
                 ))}
               </div>
             </div>
-            <div className='hidden xl:inline-flex xl:min-w-[600px]'>
+
+            {/* الخريطة */}
+            <div className="mt-8 xl:mt-14 w-full h-[400px] xl:h-auto xl:w-2/5 z-0">
               <Map searchResultData={searchResultData} />
             </div>
           </div>
         </section>
       </main>
+
       <Footer />
     </>
   );
