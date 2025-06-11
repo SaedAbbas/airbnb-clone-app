@@ -1,13 +1,11 @@
 'use client';
-
-import { useState } from 'react';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
-import { ListingCardItem, SearchResultData } from '../types/app';
+import { SearchResultData } from '../types/app';
 
 const Map = ({ searchResultData }: { searchResultData: SearchResultData }) => {
-  const position = [
+  const position:[number,number] = [
     searchResultData[0]?.lat || 30.0444,
     searchResultData[0]?.long || 31.2357,
   ]; // Default to Cairo
