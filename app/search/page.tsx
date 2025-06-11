@@ -5,6 +5,7 @@ import { format } from "date-fns";
 import api from "../utils/exploreAPI";
 import { SearchResultData } from "../types/app";
 import ListingCard from "../compenets/ListingCard";
+import Map from "../compenets/Map";
 
 type SearchParams = {
   location?: string;
@@ -80,7 +81,7 @@ const SearchResult = async({
               </div>
             </div>
             <div className='hidden xl:inline-flex xl:min-w-[600px]'>
-              {/* <Map searchResultData={searchResultData} /> */}
+              <Map searchResultData={searchResultData} />
             </div>
           </div>
         </section>
