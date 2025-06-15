@@ -14,11 +14,13 @@ type SearchParams = {
   numOfGuests?: string;
 };
 
-const SearchResult = async ({
-  searchParams: { location, startDate, endDate, numOfGuests },
-}: {
+type Props = {
   searchParams: SearchParams;
-}) => {
+};
+
+const SearchResult = async ({ searchParams }: Props) => {
+  const { location, startDate, endDate, numOfGuests } = searchParams;
+
   let formatedStartDate;
   let formatedEndDate;
   if (startDate && endDate) {
@@ -26,9 +28,6 @@ const SearchResult = async ({
     formatedEndDate = format(new Date(endDate), "dd MMMM yyyy");
   }
   const range = `${formatedStartDate} - ${formatedEndDate}`;
-
-  //toISOString() هاي لما بدك تزبط التاريخ لل url بحيث يكون شكله مزبوط فال
-  //اما بالنسبة للفورمات بتزبطلي التاريخ بدل مهو كبير كتير بتخليه عشكل  dd MMMM yyyy
 
   const filters = [
     "Cancellation Flexibility",
@@ -39,7 +38,6 @@ const SearchResult = async ({
   ];
 
   const searchResultData: SearchResultData = await api.getSearchResultData();
-  console.log(searchResultData);
 
   return (
     <>
@@ -92,3 +90,4 @@ const SearchResult = async ({
 };
 
 export default SearchResult;
+
