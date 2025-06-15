@@ -8,11 +8,12 @@ import ListingCard from "../compenets/ListingCard";
 import Map from "../compenets/Map";
 
 type PageProps = {
-  searchParams: { [key: string]: string | string[] | undefined };
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 };
 
 export default async function Page({ searchParams }: PageProps) {
-  const { location, startDate, endDate, numOfGuests } = searchParams;
+  const params = await searchParams;
+  const { location, startDate, endDate, numOfGuests } = params;
 
   let formatedStartDate;
   let formatedEndDate;
@@ -39,7 +40,6 @@ export default async function Page({ searchParams }: PageProps) {
       <main>
         <section>
           <div className="containerXL flex flex-col xl:flex-row">
-            {/* القائمة */}
             <div className="pt-14 pr-4 xl:w-3/5">
               <p className="text-xs">
                 300+ Stays - {range} - for {numOfGuests} guests
@@ -69,8 +69,6 @@ export default async function Page({ searchParams }: PageProps) {
                 ))}
               </div>
             </div>
-
-            {/* الخريطة */}
             <div className="mt-8 xl:mt-14 w-full h-[400px] xl:h-auto xl:w-2/5 z-0">
               <Map searchResultData={searchResultData} />
             </div>
