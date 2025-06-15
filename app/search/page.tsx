@@ -7,34 +7,20 @@ import { SearchResultData } from "../types/app";
 import ListingCard from "../compenets/ListingCard";
 import Map from "../compenets/Map";
 
-type SearchParams = {
-  location?: string;
-  startDate?: string;
-  endDate?: string;
-  numOfGuests?: string;
-};
-
-type PageProps  = {
-  searchParams: SearchParams;
+type PageProps = {
+  searchParams: { [key: string]: string | string[] | undefined };
 };
 
 export default async function Page({ searchParams }: PageProps) {
   const { location, startDate, endDate, numOfGuests } = searchParams;
 
-// const SearchResult = ({
-//   searchParams: { location, startDate, endDate, numOfGuests },
-// }: Props) => {
-
   let formatedStartDate;
   let formatedEndDate;
-  if (startDate && endDate) {
+  if (startDate && endDate && typeof startDate === "string" && typeof endDate === "string") {
     formatedStartDate = format(new Date(startDate), "dd MMMM yyyy");
     formatedEndDate = format(new Date(endDate), "dd MMMM yyyy");
   }
   const range = `${formatedStartDate} - ${formatedEndDate}`;
-
-  //toISOString() هاي لما بدك تزبط التاريخ لل url بحيث يكون شكله مزبوط فال
-  //اما بالنسبة للفورمات بتزبطلي التاريخ بدل مهو كبير كتير بتخليه عشكل  dd MMMM yyyy
 
   const filters = [
     "Cancellation Flexibility",
@@ -91,9 +77,7 @@ export default async function Page({ searchParams }: PageProps) {
           </div>
         </section>
       </main>
-
       <Footer />
     </>
   );
-};
-
+}
