@@ -18,7 +18,7 @@ type PageProps  = {
   searchParams: SearchParams;
 };
 
-const SearchResult = async ({ searchParams }: PageProps ) => {
+export default async function Page({ searchParams }: PageProps) {
   const { location, startDate, endDate, numOfGuests } = searchParams;
 
 // const SearchResult = ({
@@ -97,4 +97,3 @@ const SearchResult = async ({ searchParams }: PageProps ) => {
   );
 };
 
-export default SearchResult;
