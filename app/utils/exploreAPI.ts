@@ -1,4 +1,3 @@
-import { Geist } from 'next/font/google';
 import apiUrl from "./apiURL";
 
 const exploreAPI = async() => {
@@ -36,4 +35,10 @@ const getSearchResultData = async() => {
     }
 }
 
-export default {exploreAPI,getLiveAPI,getSearchResultData}
+const api = {
+  exploreAPI,
+  getLiveAPI,
+  getSearchResultData
+}
+
+export default api
