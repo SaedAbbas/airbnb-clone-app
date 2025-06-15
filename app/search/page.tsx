@@ -14,11 +14,11 @@ type SearchParams = {
   numOfGuests?: string;
 };
 
-type Props = {
+type PageProps  = {
   searchParams: SearchParams;
 };
 
-const SearchResult = async ({ searchParams }: Props) => {
+const SearchResult = async ({ searchParams }: PageProps ) => {
   const { location, startDate, endDate, numOfGuests } = searchParams;
 
 // const SearchResult = ({
