@@ -18,12 +18,13 @@ type Props = {
   searchParams: SearchParams;
 };
 
-// const SearchResult = async ({ searchParams }: Props) => {
-//   const { location, startDate, endDate, numOfGuests } = searchParams;
-const SearchResult = ({
-  searchParams: { location, startDate, endDate, numOfGuests },
-}: Props) => {
-  
+const SearchResult = async ({ searchParams }: Props) => {
+  const { location, startDate, endDate, numOfGuests } = searchParams;
+
+// const SearchResult = ({
+//   searchParams: { location, startDate, endDate, numOfGuests },
+// }: Props) => {
+
   let formatedStartDate;
   let formatedEndDate;
   if (startDate && endDate) {
