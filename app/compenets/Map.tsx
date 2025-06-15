@@ -6,8 +6,8 @@ import { SearchResultData } from '../types/app';
 
 const Map = ({ searchResultData }: { searchResultData: SearchResultData }) => {
   const position:[number,number] = [
-    searchResultData[0]?.lat || 30.0444,
-    searchResultData[0]?.long || 31.2357,
+    searchResultData[0].lat || 30.0444,
+    searchResultData[0].long || 31.2357,
   ]; // Default to Cairo
 
   // fix default marker icon (leaflet bug with webpack)
