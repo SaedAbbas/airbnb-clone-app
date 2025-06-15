@@ -14,7 +14,7 @@ const Map = ({ searchResultData }: { searchResultData: SearchResultData }) => {
   // fix default marker icon (leaflet bug with webpack) // الويب باك بعرفش يجيب صورة الايقون من النود موديولز فالكود\ هاد بحل المشكلة
   const defaultIcon = L.icon({
     iconUrl: '/marker.png',
-    iconSize: [30, 30],
+    iconSize: [40, 40],
     iconAnchor: [15, 30],
   });
   L.Marker.prototype.options.icon = defaultIcon;
