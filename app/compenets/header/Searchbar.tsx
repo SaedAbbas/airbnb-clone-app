@@ -37,16 +37,16 @@ const Searchbar = ({ placeholder }: { placeholder?: string }) => {
         <IoSearch className="bg-red-400 text-white rounded-full w-6 h-6 p-1" />
       </div>
       {inputValue && (
-        <div className="absolute box-border mx-auto left-1/2 top-[61px] max-md:top-[160px] w-[90vw] max-w-[550px] -translate-x-1/2">
+        <div className="bg-white absolute box-border mx-auto left-1/2 -translate-x-1/2 top-[61px] max-md:top-[160px] w-[90vw] max-w-[550px]">
           <DateRangePicker
             onChange={handleSelect}
             moveRangeOnFirstSelection={false}
             ranges={[selectionRange]}
-            className="bg-white p-4 w-full"
+            className="sm:p-4 w-full"
             rangeColors={["#FD5B61"]}
             minDate={new Date()}
           />
-          <div className="flex flex-col sm:flex-row items-center justify-between border-t bg-white p-4 gap-y-3 sm:gap-y-0">
+          <div className="flex flex-row my-2 p-4 items-center justify-between border-t bg-white sm:p-4 gap-y-3 sm:gap-y-0">
             <label
               htmlFor="guests"
               className="text-lg sm:text-xl text-gray-600 font-semibold"
