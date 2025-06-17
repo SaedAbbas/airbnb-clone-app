@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { IoSearch } from "react-icons/io5";
 import "react-date-range/dist/styles.css"; // main style file
 import "react-date-range/dist/theme/default.css"; // theme css file
@@ -24,6 +24,14 @@ const Searchbar = ({ placeholder }: { placeholder?: string }) => {
     setEndDate(ranges.selection.endDate as Date);
   };
 
+  const [isMobile, setIsMobile] = useState(false);
+
+useEffect(() => {
+  const checkMobile = () => setIsMobile(window.innerWidth < 500);
+  checkMobile();
+  window.addEventListener("resize", checkMobile);
+  return () => window.removeEventListener("resize", checkMobile);
+}, []);
   return (
     <>
       <div className="flex items-center bg-white md:shadow-sm border border-gray-300 rounded-full px-4 py-2 max-w-3xl">
@@ -39,13 +47,14 @@ const Searchbar = ({ placeholder }: { placeholder?: string }) => {
       {inputValue && (
         <div className="bg-white absolute box-border mx-auto left-1/2 -translate-x-1/2 top-[61px] max-md:top-[160px] w-[90vw] max-w-[550px]">
           <DateRangePicker
-            onChange={handleSelect}
-            moveRangeOnFirstSelection={false}
-            ranges={[selectionRange]}
-            className="sm:p-4 w-full"
-            rangeColors={["#FD5B61"]}
-            minDate={new Date()}
-          />
+  onChange={handleSelect}
+  moveRangeOnFirstSelection={true}
+  ranges={[selectionRange]}
+  className="w-full p-2 sm:p-4"
+  rangeColors={["#FD5B61"]}
+  minDate={new Date()}
+  direction={isMobile ? "horizontal" : "vertical"}
+/>
           <div className="flex flex-row my-2 p-4 items-center justify-between border-t bg-white sm:p-4 gap-y-3 sm:gap-y-0">
             <label
               htmlFor="guests"
